@@ -1,0 +1,11 @@
+# LaTeX produced files
+/.vscode
+/.idea
+!/figures/*.pdf
+!main.pdf
+*.log
+*.aux
+*.toc
+*.xml
+*.synctex.gz
+*.pdf
