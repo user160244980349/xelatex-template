@@ -1,11 +1,12 @@
 # LaTeX produced files
 /.vscode
 /.idea
+*.pdf
 !/figures/*.pdf
-!main.pdf
+!/main.pdf
 *.log
 *.aux
 *.toc
+*.out
 *.xml
 *.synctex.gz
-*.pdf

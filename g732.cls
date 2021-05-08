@@ -11,6 +11,7 @@
 
 % Playing with fonts
 \RequirePackage{fontspec}
+\RequirePackage[math-style=upright]{unicode-math}
 
 \defaultfontfeatures{Ligatures=TeX}
 
@@ -23,6 +24,8 @@
 \setromanfont{Times New Roman} 
 \setsansfont{Arial} 
 \setmonofont{Courier New} 
+% \setmathfont{XITS Math}
+\setmathfont{TeX Gyre Termes Math}
 
 % Playing with languages
 \RequirePackage{polyglossia}
@@ -69,6 +72,11 @@
     font={stretch=1},
     labelsep=endash,
 ]{caption}
+\RequirePackage[
+    semicolon,
+    sort&compress,
+    numbers
+]{natbib}
 
 \urlstyle{rm}
 \hypersetup{
@@ -77,11 +85,14 @@
   linktoc=page
 }
 
-\def\startlines{%
-\begingroup
-    \jj\parindent=12.5mm
+% Restrict hyphenation
+\newcommand{\jj}{
+    \tolerance=1
+    \emergencystretch=\maxdimen
+    \hyphenpenalty=10000
 }
-\def\endlines{\endgroup}
+
+\newenvironment{jje}{\jj\par}{\par}
 
 % Redefine default commands
 \AtBeginDocument{
@@ -105,6 +116,9 @@
 }
 
 % Setting lines stretch
+\tolerance=10000
+\hbadness=10000
+\maxdepth=0pt
 \setstretch{1.5}
 
 % Paragraphs spaces
@@ -118,7 +132,7 @@
 
 % Configuring floats
 \setlength{\intextsep}{\baselineskip}
-\setlength{\floatsep}{\baselineskip}
+\setlength{\floatsep}{0mm}
 \setlength{\textfloatsep}{\baselineskip}
 
 % Math spacing
@@ -133,22 +147,30 @@
 \setlength{\LTpre}{\baselineskip}
 \setlength{\LTpost}{.75\baselineskip}
 
+\newcolumntype{Z}[1]{>{\setlength{\baselineskip}{.75\baselineskip}\arraybackslash}m{#1}}
+\newcolumntype{Q}[1]{>{\setlength{\baselineskip}{.75\baselineskip}\arraybackslash}p{#1}}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}Z{#1}}
+\newcolumntype{M}[1]{>{\arraybackslash}Z{#1}}
+\newcolumntype{T}[1]{>{\arraybackslash}Q{#1}}
+\newcolumntype{H}[1]{>{\bfseries\centering\arraybackslash}M{#1}}
+
+\newenvironment{ltwrap}[3]{
+    \begingroup
+    #3
+    \setlength{\tabcolsep}{#1}
+    \newcommand{\x}{\textwidth-2\tabcolsep}
+    \renewcommand{\arraystretch}{#2}
+}{\endgroup}
+
 %
 % Configuring titles
 %
 
-% Word style justifications
-\newcommand{\jj}{
-    \tolerance=1
-    \emergencystretch=\maxdimen
-    \hyphenpenalty=10000
-    \hbadness=10000
-}
-
 % Configuring spacing
 \titlespacing{\section}{0mm}{0mm}{0mm}
-\titlespacing{\subsection}{0mm}{0mm}{0mm}
-\titlespacing{\subsubsection}{0mm}{0mm}{0mm}
+\titlespacing{\subsection}{0mm}{3mm}{0mm}
+\titlespacing{\subsubsection}{0mm}{3mm}{0mm}
 
 % Configuring formats
 \titleformat{name=\section}[block]
@@ -167,7 +189,7 @@
     {0mm}{\filright}
 
 \titleformat{name=\subsubsection}[block]
-    {\hspace{\parindent}}
+    {\hspace{\parindent}\bfseries}
     {\thesubsubsection~}
     {0mm}{\filright}
 
@@ -215,10 +237,12 @@
 \renewlist{enumerate}{enumerate}{3}
 
 % Bibliography enumeration
-\newlist{biblenum}{enumerate}{3}
+
+\newlist{biblenum}{enumerate}{1}
 \setlist[biblenum]{
     align=left,
-    label=\arabic*~,
+    % label=\arabic*.~,
+    label=,
     topsep=0mm,
     parsep=0mm,
     partopsep=0mm,
@@ -230,8 +254,7 @@
     listparindent=\parindent
 }
 \setlist[biblenum,1]{}
-\setlist[biblenum,2]{}
-\setlist[biblenum,3]{}
+\renewcommand{\bibnumfmt}[1]{#1.~}
 
 % Terms and abbreviations
 \newlist{termenum}{enumerate}{3}
