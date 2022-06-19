@@ -24,7 +24,6 @@
 \setromanfont{Times New Roman} 
 \setsansfont{Arial} 
 \setmonofont{Courier New} 
-% \setmathfont{XITS Math}
 \setmathfont{TeX Gyre Termes Math}
 
 % Playing with languages
@@ -46,7 +45,6 @@
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
-\RequirePackage{tabularx}
 \RequirePackage{titleref}
 \RequirePackage{pdflscape}
 \RequirePackage{longtable}
@@ -54,11 +52,9 @@
 \RequirePackage{indentfirst}
 \RequirePackage{multirow}
 \RequirePackage{hyperref}
-\RequirePackage{xurl}
 \RequirePackage{listings}
 \RequirePackage{subfiles}
 \RequirePackage{graphicx}
-\RequirePackage{fmtcount}
 \RequirePackage{letltxmacro}
 \RequirePackage[calc]{datetime2}
 \RequirePackage[
@@ -72,18 +68,56 @@
     font={stretch=1},
     labelsep=endash,
 ]{caption}
-\RequirePackage[
-    semicolon,
-    sort&compress,
-    numbers
-]{natbib}
 
-\urlstyle{rm}
 \hypersetup{
   raiselinks=true,
   linktocpage,
   linktoc=page
 }
+\usepackage[
+    backend=biber,
+    bibencoding=utf8,
+    sorting=none,
+    movenames=false,
+    style=gost-numeric,
+    doi=true,
+]{biblatex}
+
+% Bibliography management
+\renewcommand*{\mkbibhdnamefamily}[1]{#1}
+
+\makeatletter
+    \defbibheading{nobibheading}{}
+    \newtotcounter{citenum}
+    \defbibenvironment{counter}
+        {\setcounter{citenum}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citenum}}
+\makeatother 
+
+\newcommand*{\countcites}{
+    \printbibliography[env=counter, heading=nobibheading]
+}
+
+\defbibenvironment{bibliography}
+{\list
+    {\printtext[labelnumberwidth]{
+        \printfield{prefixnumber}
+        \printfield{labelnumber}}}
+    {%
+        \setlength{\labelwidth}{\labelnumberwidth}
+        \setlength{\leftmargin}{0pt}
+        \setlength{\labelsep}{\widthof{\ }}
+        \setlength{\itemsep}{0pt}
+        \setlength{\itemindent}{1.25cm}
+        \addtolength{\itemindent}{\labelwidth}
+        \addtolength{\itemindent}{\labelsep}
+        \setlength{\parsep}{\bibparsep}
+    }%
+    \renewcommand*{\makelabel}[1]{\hss##1}
+}
+{\endlist}
+{\item}
 
 % Restrict hyphenation
 \newcommand{\jj}{
@@ -91,10 +125,9 @@
     \emergencystretch=\maxdimen
     \hyphenpenalty=10000
 }
-
 \newenvironment{jje}{\jj\par}{\par}
 
-% Redefine default commands
+% Date
 \AtBeginDocument{
   \DTMnewdatestyle{passdate}{
       \renewcommand{\DTMdisplaydate}[4]{
@@ -105,19 +138,9 @@
   \DTMsetdatestyle{passdate}
 }
 
-\AtBeginDocument{
-  \LetLtxMacro{\oldref}{\ref}
-  \renewcommand{\ref}[1]{\mbox{\oldref{#1}}}
-}
-
-\AtBeginDocument{
-  \LetLtxMacro{\oldbibitem}{\bibitem}
-  \renewcommand{\bibitem}[1]{\refstepcounter{bibcnt}\oldbibitem{#1}}
-}
-
 % Setting lines stretch
-\tolerance=10000
-\hbadness=10000
+\tolerance=300
+\hbadness=300
 \maxdepth=0pt
 \setstretch{1.5}
 
@@ -135,7 +158,7 @@
 \setlength{\floatsep}{0mm}
 \setlength{\textfloatsep}{\baselineskip}
 
-% Math spacing
+% Math
 \AtBeginDocument{
     \setlength{\abovedisplayskip}{.75\baselineskip}
     \setlength{\belowdisplayskip}{.75\baselineskip}
@@ -143,7 +166,7 @@
     \setlength{\belowdisplayshortskip}{.75\baselineskip}
 }
 
-% Tables spacing
+% Tables
 \setlength{\LTpre}{\baselineskip}
 \setlength{\LTpost}{.75\baselineskip}
 
@@ -231,30 +254,10 @@
     itemindent=\parindent,
     listparindent=\parindent
 }
-\setlist[enumerate,1]{}
-\setlist[enumerate,2]{}
-\setlist[enumerate,3]{}
+\setlist[enumerate, 1]{}
+\setlist[enumerate, 2]{}
+\setlist[enumerate, 3]{}
 \renewlist{enumerate}{enumerate}{3}
-
-% Bibliography enumeration
-
-\newlist{biblenum}{enumerate}{1}
-\setlist[biblenum]{
-    align=left,
-    % label=\arabic*.~,
-    label=,
-    topsep=0mm,
-    parsep=0mm,
-    partopsep=0mm,
-    labelsep=0mm,
-    itemsep=0mm,
-    leftmargin=0mm,
-    labelwidth=0mm,
-    itemindent=\parindent,
-    listparindent=\parindent
-}
-\setlist[biblenum,1]{}
-\renewcommand{\bibnumfmt}[1]{#1.~}
 
 % Terms and abbreviations
 \newlist{termenum}{enumerate}{3}
@@ -271,9 +274,9 @@
     itemindent=0mm,
     listparindent=0mm
 }
-\setlist[termenum,1]{}
-\setlist[termenum,2]{}
-\setlist[termenum,3]{}
+\setlist[termenum, 1]{}
+\setlist[termenum, 2]{}
+\setlist[termenum, 3]{}
 
 \setlist[itemize]{
     align=left,
@@ -288,23 +291,15 @@
     itemindent=\parindent,
     listparindent=\parindent
 }
-\setlist[itemize,1]{}
-\setlist[itemize,2]{}
-\setlist[itemize,3]{}
+\setlist[itemize, 1]{}
+\setlist[itemize, 2]{}
+\setlist[itemize, 3]{}
 \renewlist{itemize}{itemize}{3}
-
-% 
-% Bibliography & counters
-% 
-
-% Cibitem counter
-\newcounter{bibcnt}
 
 % Setting up counters
 \regtotcounter{page}
 \regtotcounter{table}
 \regtotcounter{figure}
-\regtotcounter{bibcnt}
 
 %
 % Figures

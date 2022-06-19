@@ -4,64 +4,26 @@
 \begin{document}
 
 \newpage
-\section{Заголовок 1}
+\section{Примеры оформления}
 \label{sec:subject_domain}
 
-Пример оформления рисунков \ref{fig:pics_management_del} и \ref{fig:pics_management_del}:
+Есть ряд полезных ссылок, если что-то не устраивает -- можно попробовать покопаться в них \cite{gost-docs, gost-repo, gost-examples, master-report-repo}.
+
+\subsection{Примеры оформления элементов}
+\subsubsection{Пример рисунка}
+Пример раздела 2 уровня. Пример оформления рисунка \ref{fig:pics_management_del}:
 
 \begin{figure}[H]
     \centering
     \ffigbox[\FBwidth]
-    {\caption{Пример удаления слоя\label{fig:pics_management_del}}}
+    {\caption{Пример рисунка\label{fig:pics_management_del}}}
     {\includegraphics[width=.9\textwidth]{malevich.png}}
     \vspace{-\baselineskip}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \ffigbox[\FBwidth]
-    {\caption{Презентационный прототип интерфейса\label{fig:proto}}}
-    {\includegraphics[width=.9\textwidth]{malevich.png}}
-    \vspace{-\baselineskip}
-\end{figure}
+\subsubsection{Пример таблицы}
+Пример раздела 3 уровня. Пример таблицы \ref{tab:iot_clusters}.
 
-Пример перечисления:
-\begin{enumerate}
-    \item определение источника информации о различной IoT-продукции,
-    \item отправка поискового запроса,
-    \item получение результатов запроса (список IoT-продуктов),
-    \item определение производителей IoT-продукции,
-    \item поиск официальных сайтов производителей в сети интернет,
-    \item поиск раздела <<политика безопасности>> на сайтах производителей,
-    \item скачивание политик безопасности,
-    \item очистка скачанных веб-документов от лишних элементов разметки,
-    \item слияние тегов и оборачивание сырого текста,
-    \item нормализация пунктуации и отступов,
-    \item извлечение текста из тегов.
-\end{enumerate}
-
-Еще пример перечисления:
-\begin{enumerate}
-    \item определение источника информации о различной IoT-продукции,
-    \item отправка поискового запроса,
-    \item получение результатов запроса (список IoT-продуктов),
-    \item определение производителей IoT-продукции,
-    \item поиск официальных сайтов производителей в сети интернет,
-    \item поиск раздела <<политика безопасности>> на сайтах производителей,
-    \item скачивание политик безопасности,
-    \item очистка скачанных веб-документов от лишних элементов разметки,
-    \item слияние тегов и оборачивание сырого текста,
-    \item нормализация пунктуации и отступов,
-    \item извлечение текста из тегов.
-\end{enumerate}
-
-Пример формулы \ref{eq:pp}.
-\begin{equation}
-    \label{eq:pp}
-    PP = M - \frac{\sum^{M}_{t=0}CF_t}{CF_{M+1}}\ ,\; PP = 3 - \frac{-2 841}{3 318} = 3{,}86\:\text{кварталов} = 0,965\:\text{года},
-\end{equation}
-
-Пример таблицы \ref{tab:iot_clusters}.
 \begin{ltwrap}{2mm}{1}{\footnotesize}
     \begin{longtable}[H]{|C{.05\x}|M{.475\x}|M{.475\x}|}
         \caption{Пример таблицы\label{tab:iot_clusters}}\\\hline
@@ -94,28 +56,36 @@
     \end{longtable}
 \end{ltwrap}
 
-Примеры ссылок \cite{MDPI10, MDPI11, MDPI12, MDPI13} \cite{MDPI10, MDPI12, MDPI14, MDPI15}.
+\subsubsection{Пример формулы}
+Для расчета NPV необходима ставка дисконтирования, вычисленная по формуле (\ref{eq:wacc}) (WACC):
+\begin{equation}
+    \label{eq:wacc}
+    R = r_s \cdot \frac{V_s}{V} + r_d \cdot \frac{V_d}{V} \cdot (1-T)\ ,\; R = 0 + 0{,}078 \cdot 1 \cdot (1-0{,}2) = 0{,}0624,
+\end{equation}
+\makebox[1.25cm]{где\hfill}$R$ -- стоимость капитала,\\
+\makebox[1.25cm]{}$r_s$ -- ставка по собственному капиталу,\\
+\makebox[1.25cm]{}$V_s$ -- величина собственного капитала,\\
+\makebox[1.25cm]{}$V$ -- общая сумма капитала,\\
+\makebox[1.25cm]{}$r_d$ -- ставка по заемному капиталу,\\
+\makebox[1.25cm]{}$V_d$ -- величина заемного капитала,\\
+\makebox[1.25cm]{}$T$ -- ставка налога на прибыль.
 
-\section{Заголовок 2}
-Пример раздела 1 уровня.
+\subsubsection{Примеры перечислений}
+Пример перечисления:
+\begin{enumerate}
+    \item раз,
+    \item два,
+    \item три.
+\end{enumerate}
 
-\subsection{Заголовок 2}
-Пример раздела 2 уровня.
+Пример перечисления:
+\begin{itemize}
+    \item раз,
+    \item два,
+    \item три.
+\end{itemize}
 
-\subsubsection{Заголовок 2}
-Пример раздела 3 уровня.
-
-\subsubsection{Заголовок 2}
-Пример раздела 3 уровня.
-
-\subsection{Заголовок 2}
-Пример раздела 2 уровня.
-
-\section{Заголовок 3}
-Пример раздела 1 уровня.
-
-\section{Заголовок 4}
-Пример раздела 1 уровня.
-
+\subsubsection{Примеры ссылок}
+Примеры ссылок \cite{texbook, latex:companion, latex2e, knuth:1984, lesk:1977}, \cite{texbook, latex2e, lesk:1977}, \cite{texbook, latex2e, knuth:1984, lesk:1977}.
 
 \end{document}
