@@ -64,7 +64,7 @@
 
 \RequirePackage[
     font={stretch=1},
-    labelsep=endash,
+    labelsep=endash
 ]{caption}
 
 \usepackage[
@@ -72,9 +72,10 @@
     bibencoding=utf8,
     sorting=none,
     movenames=false,
+    babel=other,
     style=gost-numeric,
     doi=true,
-    urldate=short,
+    urldate=short
 ]{biblatex}
 
 % Configuring links
@@ -134,7 +135,7 @@
 }
 \newenvironment{jje}{\jj\par}{\par}
 
-% Date
+% Date on titlepage
 \AtBeginDocument{
   \DTMnewdatestyle{passdate}{
       \renewcommand{\DTMdisplaydate}[4]{
@@ -322,7 +323,7 @@
     capposition=top,
 }
 
-% Listings
+% Listings are not recommended in report, maybe in appendix will be fine
 \captionsetup[lstlisting]{
     format=plain,
     singlelinecheck=false,
