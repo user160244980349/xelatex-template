@@ -57,6 +57,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{letltxmacro}
 \RequirePackage[calc]{datetime2}
+
 \RequirePackage[
     paper=a4paper,
     top=20mm,
@@ -64,16 +65,12 @@
     left=30mm,
     right=15mm
 ]{geometry}
+
 \RequirePackage[
     font={stretch=1},
     labelsep=endash,
 ]{caption}
 
-\hypersetup{
-  raiselinks=true,
-  linktocpage,
-  linktoc=page
-}
 \usepackage[
     backend=biber,
     bibencoding=utf8,
@@ -81,7 +78,16 @@
     movenames=false,
     style=gost-numeric,
     doi=true,
+    urldate=short,
 ]{biblatex}
+
+% Configuring links
+\urlstyle{rm}
+\hypersetup{
+  raiselinks=true,
+  linktocpage,
+  linktoc=page
+}
 
 % Bibliography management
 \renewcommand*{\mkbibhdnamefamily}[1]{#1}
@@ -104,7 +110,7 @@
     {\printtext[labelnumberwidth]{
         \printfield{prefixnumber}
         \printfield{labelnumber}}}
-    {%
+    {
         \setlength{\labelwidth}{\labelnumberwidth}
         \setlength{\leftmargin}{0pt}
         \setlength{\labelsep}{\widthof{\ }}
@@ -113,11 +119,15 @@
         \addtolength{\itemindent}{\labelwidth}
         \addtolength{\itemindent}{\labelsep}
         \setlength{\parsep}{\bibparsep}
-    }%
+    }
     \renewcommand*{\makelabel}[1]{\hss##1}
 }
 {\endlist}
 {\item}
+
+% \renewbibmacro*{urldate}{
+%     (дата обращения \printfield{urlday}.\printfield{urlmonth}.\printfield{urlyear})
+% }
 
 % Restrict hyphenation
 \newcommand{\jj}{
