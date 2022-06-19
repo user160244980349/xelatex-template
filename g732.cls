@@ -36,7 +36,6 @@
 % Importing packages
 \RequirePackage{subfiles}
 \RequirePackage{floatrow}
-\RequirePackage{float}
 \RequirePackage{diagbox}
 \RequirePackage{amsmath}
 \RequirePackage{totcount}
@@ -53,9 +52,6 @@
 \RequirePackage{multirow}
 \RequirePackage{hyperref}
 \RequirePackage{listings}
-\RequirePackage{subfiles}
-\RequirePackage{graphicx}
-\RequirePackage{letltxmacro}
 \RequirePackage[calc]{datetime2}
 
 \RequirePackage[
@@ -125,6 +121,7 @@
 {\endlist}
 {\item}
 
+% Access date format
 % \renewbibmacro*{urldate}{
 %     (дата обращения \printfield{urlday}.\printfield{urlmonth}.\printfield{urlyear})
 % }
@@ -148,7 +145,7 @@
   \DTMsetdatestyle{passdate}
 }
 
-% Setting lines stretch
+% Setting lines stretch and tolerance
 \tolerance=300
 \hbadness=300
 \maxdepth=0pt
@@ -226,10 +223,7 @@
     {\thesubsubsection~}
     {0mm}{\filright}
 
-% 
 % Table of contents styling
-% 
-
 % Removing margin for pages
 \contentsmargin{0mm}
 
@@ -249,9 +243,7 @@
     {}
     {\titlerule*[1ex]{.}\thecontentspage}
 
-% 
 % Enumerations
-% 
 \setlist[enumerate]{
     align=left,
     label=\arabic*)~,
@@ -311,21 +303,14 @@
 \regtotcounter{table}
 \regtotcounter{figure}
 
-%
 % Figures
-%
 \captionsetup[figure]{
     name=Рисунок,
     format=plain,
     justification=centering,
 }
-\floatsetup[figure]{
-    capposition=bottom,
-}
 
-%
 % Longtables
-%
 \captionsetup[longtable]{
     name=Таблица,
     format=plain,
@@ -337,9 +322,7 @@
     capposition=top,
 }
 
-%
 % Listings
-%
 \captionsetup[lstlisting]{
     format=plain,
     singlelinecheck=false,
